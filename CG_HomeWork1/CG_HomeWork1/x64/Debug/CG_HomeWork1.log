@@ -1,0 +1,5 @@
+﻿  hm1.cpp
+C:\Users\이유재\source\repos\CG_HomeWork1\CG_HomeWork1\hm1.cpp(25,21): warning C4305: '인수': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\Users\이유재\source\repos\CG_HomeWork1\CG_HomeWork1\hm1.cpp(26,22): warning C4305: '인수': 'double'에서 'GLfloat'(으)로 잘립니다.
+C:\Users\이유재\source\repos\CG_HomeWork1\CG_HomeWork1\hm1.cpp(27,21): warning C4305: '인수': 'double'에서 'GLfloat'(으)로 잘립니다.
+  CG_HomeWork1.vcxproj -> C:\Users\이유재\source\repos\CG_HomeWork1\x64\Debug\CG_HomeWork1.exe
