@@ -13,6 +13,9 @@ GLdouble centerOfObject[4][3] = {
 	{0, 0, 0}
 };
 
+GLdouble dir[3] = { 0 };
+GLdouble unitVector[3] = { 0 };
+
 GLfloat color[4][3] = {
 	{1, 0, 0},
 	{0, 0, 1},
@@ -33,6 +36,10 @@ void init() {
 
 	gluPerspective(zoom, 1, 0.0001, 100);
 	gluLookAt(1, 1, 1, 0, 0, 0, 0, 1, 0);
+
+	
+	for (int j = 0; j < 3; ++j)
+		std::cout << centerOfObject[0][j] << std::endl;
 }
 
 void drawCoordinate() {
@@ -84,16 +91,16 @@ void display()
 	drawCoordinate();
 
 	if (redisplay) {
+		glRotatef(angle, 0, 0, 1);
 		for (int i = 0; i < 2; i++) {
-
 			glPushMatrix();
-			glRotatef(angle, 0, 0, 1);
 			glTranslatef(centerOfObject[i][0], centerOfObject[i][1], centerOfObject[i][2]);
 			drawCube(color[i]);
 			glPopMatrix();
 		}
 	}
 	else {
+		glRotatef(angle, 0, 0, 1);
 		for (int i = 0; i < 2; i++) {
 
 			glPushMatrix();
@@ -108,20 +115,25 @@ void display()
 	glFlush();
 }
 
-GLdouble* pointToVector(GLdouble s[3], GLdouble e[3]) {
-	GLdouble vector[3] = { e[0] - s[0], e[1] - s[1], e[2] - s[2] };
-	return vector;
+void pointToVector(GLdouble s[3], GLdouble e[3]) {
+	dir[0] = e[0] - s[0];
+	dir[1] = e[1] - s[1];
+	dir[2] = e[2] - s[2];
+
 }
 
-GLdouble* normalizeVector(GLdouble* vector) {
+void normalizeVector(GLdouble* vector) {
 	double len = sqrt(vector[0] * vector[0] + vector[1] * vector[1] + vector[2] * vector[2]);
-	GLdouble normalizedVector[3] = {vector[0] / len, vector[1] / len, vector[2] / len};
-	return normalizedVector;
+
+	unitVector[0] = vector[0] / len;
+	unitVector[1] = vector[1] / len;
+	unitVector[2] = vector[2] / len;
 }
+	
 
 void moveCenterOfObject(GLdouble* centerOfObject, GLdouble vector[3], GLdouble velocity) {
 	for (int i = 0; i < 3; ++i)
-		centerOfObject[0] += vector[0] * velocity;
+		centerOfObject[i] += vector[i] * velocity;
 }
 
 void mouseFunc(int button, int state, int x, int y) {
@@ -135,6 +147,7 @@ void mouseFunc(int button, int state, int x, int y) {
 			angle += 10;
 		}
 	}
+
 	else if (button == GLUT_MIDDLE_BUTTON && state == GLUT_DOWN) {
 		GLint viewport[4] = {0};
 		GLdouble modelview[16] = {0};
@@ -146,35 +159,24 @@ void mouseFunc(int button, int state, int x, int y) {
 		glGetIntegerv(GL_VIEWPORT, viewport);
 		glGetDoublev(GL_MODELVIEW_MATRIX, modelview);
 		glGetDoublev(GL_PROJECTION_MATRIX, projection);
-
-		for (int i = 0; i < 4; ++i) {
-			modelview[i * 4 + 3] = 1;
-		}
-		for (int i = 0; i < 4; ++i) {
-			std::cout << modelview[i * 4] << " " << modelview[i * 4 + 1] << " " << modelview[i * 4 + 2] << " " << modelview[i * 4 + 3] << " " << std::endl;
-			
-		}
-
-		std::cout << std::endl;
-		/*for (int i = 0; i < 4; ++i) {
-			std::cout << projection[i * 4] << " " << projection[i * 4 + 1] << " " << projection[i * 4 + 2] << " " << projection[i * 4 + 3] << " " << std::endl;
-		}*/
-
+		
 		// 스크린 좌표계의 마우스 좌표값을 변환
 		winX = (float)x;
 		winY = (float)viewport[3] - (float)y;
 		glReadPixels(x, int(winY), 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &winZ);
 		gluUnProject(winX, winY, winZ, modelview, projection, viewport, &posX, &posY, &posZ);
-
-		std::cout << posX << " " << posY << " " << posZ << std::endl;
-		std::cout << winX << " " << winY << " " << winZ << std::endl;
 		
 
 		GLdouble velocity = 0.2;
-		GLdouble pointer[3] = { posX, posY, posZ };
+		GLdouble pointer[3] = { posX, posY, posZ};
+		
 		for (int i = 0; i < 4; ++i) {
-			GLdouble* dir = pointToVector(centerOfObject[i], pointer);
-			GLdouble* unitVector = normalizeVector(dir);
+			pointToVector(centerOfObject[i], pointer);
+			
+			for (int j = 0; j < 3; ++j)
+				std::cout << dir[j] << std::endl;
+
+			normalizeVector(dir);
 
 			moveCenterOfObject(centerOfObject[i], unitVector, velocity);
 		}
