@@ -16,9 +16,10 @@ double eyeX = 0.5, eyeY = 0.5, eyeZ = 0.5, refX = 0, refY = 0.3, refZ = 0;
 double theta = 180.0, y = 1.36, z = 7.97888;
 
 // 카메라 변수
-GLfloat cameraAngle = 0.0f;
+GLfloat yaw = 0;
+GLfloat pitch = 60.0f;
 GLfloat cameraX = 0.5f;
-GLfloat cameraY = 0.0f;
+GLfloat cameraY = 0.5f;
 GLfloat cameraZ = 0.5f;
 static GLfloat v_cube[8][3] =
 {
@@ -343,7 +344,7 @@ void monitor() {
     glColor3f(color[0], color[1], color[2]);
     glTranslatef(0, pilir_height, 0);
     glScalef(4, 3, 0.4);
-    
+
     setMaterial(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff);
     glutSolidCube(0.03);
     glPopMatrix();
@@ -412,28 +413,28 @@ void lightTwo()
 {
     glPushMatrix();
     GLfloat no_light[] = { 0.0, 0.0, 0.0, 1.0 };
-    GLfloat light_ambient[]  = { 0, 0, 1.0, 1.0};
-    GLfloat light_diffuse[]  = { 0, 0, 1.0, 1.0 };
+    GLfloat light_ambient[] = { 0, 0, 1.0, 1.0 };
+    GLfloat light_diffuse[] = { 0, 0, 1.0, 1.0 };
     GLfloat light_specular[] = { 1.0, 1.0, 1.0, 1.0 };
     GLfloat light_position[] = { 0.12, 0.22,0.75 };
-    GLfloat light_target[] = { 0.5, 0.35, 0};
+    GLfloat light_target[] = { 0.5, 0.35, 0 };
     GLfloat spot_direction[3] = { light_target[0] - light_position[0], light_target[1] - light_position[1], light_target[2] - light_position[2] };
 
     for (int i = 0; i < 3; ++i)
         spot_direction[i] = (light_target[0] - light_position[i]);
 
     //glEnable( GL_LIGHT1);
-    
-    if(amb2 == true){glLightfv( GL_LIGHT1, GL_AMBIENT, light_ambient);}
-    else{glLightfv( GL_LIGHT1, GL_AMBIENT, no_light);}
-    
-    if(diff2 == true){glLightfv( GL_LIGHT1, GL_DIFFUSE, light_diffuse);}
-    else{glLightfv( GL_LIGHT1, GL_DIFFUSE, no_light);}
-    
-    if(spec2 == true){glLightfv( GL_LIGHT1, GL_SPECULAR, light_specular);}
-    else{glLightfv( GL_LIGHT1, GL_SPECULAR, no_light);}
-    
-    glLightfv( GL_LIGHT1, GL_POSITION, light_position);
+
+    if (amb2 == true) { glLightfv(GL_LIGHT1, GL_AMBIENT, light_ambient); }
+    else { glLightfv(GL_LIGHT1, GL_AMBIENT, no_light); }
+
+    if (diff2 == true) { glLightfv(GL_LIGHT1, GL_DIFFUSE, light_diffuse); }
+    else { glLightfv(GL_LIGHT1, GL_DIFFUSE, no_light); }
+
+    if (spec2 == true) { glLightfv(GL_LIGHT1, GL_SPECULAR, light_specular); }
+    else { glLightfv(GL_LIGHT1, GL_SPECULAR, no_light); }
+
+    glLightfv(GL_LIGHT1, GL_POSITION, light_position);
     glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 50.0);
     glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, spot_direction);
 
@@ -467,7 +468,7 @@ void rug() {
 
     amb_coff = 0.1;
     dif_coff = 0.7;
-  
+
     //원기둥
     glPushMatrix();
     setColorRGB(color, 245, 237, 230);
@@ -558,7 +559,7 @@ void lamp() {
     setMaterial(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff);
     gluCylinder(quadratic, r1_bottom, r1_top, height1, 32, 32);
     glPopMatrix();
-    
+
     glPushMatrix();
     setColorRGB(color, 245, 237, 230);
     glColor3f(color[0], color[1], color[2]);
@@ -602,27 +603,27 @@ void lamp() {
     glutSolidSphere(r1_sphere, 32, 32);
     glPopMatrix();
 
-   
+
 
     glPushMatrix();
     setColorRGB(color, 245, 237, 230);
     glColor3f(color[0], color[1], color[2]);
     glTranslatef(0, height1 + 0.045 + 0.6 + 0.3, -0.35);
     setMaterial(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff);
-    gluCylinder(quadratic, r1_bottom / 1.5, r1_top, 2*height1, 32, 32);
+    gluCylinder(quadratic, r1_bottom / 1.5, r1_top, 2 * height1, 32, 32);
     glPopMatrix();
 }
 
 void rotateCamera() {
-    // 카메라의 방향 벡터를 계산
-    GLfloat cameraDirectionX = sin(cameraAngle);
-    GLfloat cameraDirectionY = 0.0f;
-    GLfloat cameraDirectionZ = cos(cameraAngle);
+    //// 카메라의 방향 벡터를 계산
+    //GLfloat cameraDirectionX = sin(cameraAngle);
+    //GLfloat cameraDirectionY = 0.0f;
+    //GLfloat cameraDirectionZ = cos(cameraAngle);
 
-    // gluLookAt 함수를 사용하여 카메라를 설정
-    gluLookAt(cameraX, cameraY, cameraZ,  // 카메라 위치
-        cameraX + cameraDirectionX, cameraY + cameraDirectionY, cameraZ + cameraDirectionZ,  // 목표 지점
-        0.0f, 1.0f, 0.0f);  // 상단 방향
+    //// gluLookAt 함수를 사용하여 카메라를 설정
+    //gluLookAt(cameraX, cameraY, cameraZ,  // 카메라 위치
+    //    cameraX + cameraDirectionX, cameraY + cameraDirectionY, cameraZ + cameraDirectionZ,  // 목표 지점
+    //    0.0f, 1.0f, 0.0f);  // 상단 방향
 }
 
 // 디스플레이 콜백 함수
@@ -631,6 +632,7 @@ void rtdisplay() {
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+
 
     // 카메라 회전
     rotateCamera();
@@ -644,7 +646,7 @@ void rtdisplay() {
 // 시간 콜백 함수
 void timer(int value) {
     // 카메라 각도를 업데이트
-    cameraAngle += 0.01f;
+    /*cameraAngle += 0.01f;*/
 
     // 디스플레이 함수를 호출하여 화면을 다시 그립니다.
     glutPostRedisplay();
@@ -662,7 +664,16 @@ void display() {
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    gluLookAt(eyeX, eyeY, eyeZ, refX, refY, refZ, 0, 1, 0);
+    const double PI = 3.14;
+    GLfloat cameraDirectionX = cos(yaw);
+    GLfloat cameraDirectionY = 0;
+        GLfloat cameraDirectionZ = sin(yaw);
+
+    // gluLookAt 함수를 사용하여 카메라를 설정
+    gluLookAt(cameraX, cameraY, cameraZ,  // 카메라 위치
+        cameraX + cameraDirectionX, cameraY + cameraDirectionY, cameraZ + cameraDirectionZ,  // 목표 지점
+        0.0f, 1.0f, 0.0f);  // 상단 방향
+    /*gluLookAt(eyeX, eyeY, eyeZ, refX, refY, refZ, 0, 1, 0);*/
     glEnable(GL_LIGHTING);
     lightOne();
     lightTwo();
@@ -704,17 +715,17 @@ void myKeyboardFunc(unsigned char key, int x, int y)
 {
     switch (key)
     {
-    case 'w': // move eye point upwards along Y axis
-        eyeY += 1.0 / 10;
-        break;
-    case 's': // move eye point downwards along Y axis
-        eyeY -= 1.0 / 10;
-        break;
-    case 'a': // move eye point left along X axis
-        eyeX -= 1.0 / 10;
-        break;
-    case 'd': // move eye point right along X axis
-        eyeX += 1.0 / 10;
+    //case 'w': // move eye point upwards along Y axis
+    //    eyeY += 1.0 / 10;
+    //    break;
+    //case 's': // move eye point downwards along Y axis
+    //    eyeY -= 1.0 / 10;
+    //    break;
+    //case 'a': // move eye point left along X axis
+    //    eyeX -= 1.0 / 10;
+    //    break;
+    //case 'd': // move eye point right along X axis
+    //    eyeX += 1.0 / 10;
         break;
     case 'o':  //zoom out
         eyeZ += 1.0 / 10;
@@ -764,7 +775,7 @@ void myKeyboardFunc(unsigned char key, int x, int y)
             glDisable(GL_LIGHT0);
             switchTwo = true; amb2 = true; diff2 = true; spec2 = true;
             glEnable(GL_LIGHT1);
-            
+
             break;
         }
         else if (switchTwo == true)
@@ -793,36 +804,48 @@ void myKeyboardFunc(unsigned char key, int x, int y)
         glDisable(GL_LIGHT0);
         switchTwo = false; amb2 = false; diff2 = false; spec2 = false;
         glDisable(GL_LIGHT1); break;
-    case'4': //turn on/off ambient light 1
-        if (amb1 == false) { amb1 = true; break; }
-        else { amb1 = false; break; }
-    case'5':
-        if (diff1 == false) { diff1 = true; break; }
-        else { diff1 = false; break; }
-    case'6':
-        if (spec1 == false) { spec1 = true; break; }
-        else { spec1 = false; break; }
-    case'7': //turn on/off ambient light 2
-        if (amb2 == false) { amb2 = true; break; }
-        else { amb2 = false; break; }
-    case'8':
-        if (diff2 == false) { diff2 = true; break; }
-        else { diff2 = false; break; }
-    case'9':
-        if (spec2 == false) { spec2 = true; break; }
-        else { spec2 = false; break; }
-    case'e': //turn on/off ambient lamp light
-        if (amb3 == false) { amb3 = true; break; }
-        else { amb3 = false; break; }
-    case'r':
-        if (diff3 == false) { diff3 = true; break; }
-        else { diff3 = false; break; }
-    case't':
-        if (spec3 == false) { spec3 = true; break; }
-        else { spec3 = false; break; }
-    case 'z':
-        cameraAngle += 0.01f;
-        display();
+    //case'4': //turn on/off ambient light 1
+    //    if (amb1 == false) { amb1 = true; break; }
+    //    else { amb1 = false; break; }
+    //case'5':
+    //    if (diff1 == false) { diff1 = true; break; }
+    //    else { diff1 = false; break; }
+    //case'6':
+    //    if (spec1 == false) { spec1 = true; break; }
+    //    else { spec1 = false; break; }
+    //case'7': //turn on/off ambient light 2
+    //    if (amb2 == false) { amb2 = true; break; }
+    //    else { amb2 = false; break; }
+    //case'8':
+    //    if (diff2 == false) { diff2 = true; break; }
+    //    else { diff2 = false; break; }
+    //case'9':
+    //    if (spec2 == false) { spec2 = true; break; }
+    //    else { spec2 = false; break; }
+    //case'e': //turn on/off ambient lamp light
+    //    if (amb3 == false) { amb3 = true; break; }
+    //    else { amb3 = false; break; }
+    //case'r':
+    //    if (diff3 == false) { diff3 = true; break; }
+    //    else { diff3 = false; break; }
+    //case't':
+    //    if (spec3 == false) { spec3 = true; break; }
+    //    else { spec3 = false; break; }
+    case'z':
+        pitch += 0.1f;
+        break;
+    case 'w': //turn on/off ambient lamp light
+        pitch -= 0.1f;
+        break;
+    case 's':
+        pitch += 0.1f;
+        break;
+    case 'a':
+        yaw += 0.1f;
+        break; 
+    case 'd':
+        yaw -= 0.1f;
+        break;
     case 27:    // Escape key
         exit(1);
     }
