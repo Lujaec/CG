@@ -12,9 +12,9 @@
 GLboolean redFlag = true, switchOne = false, switchTwo = false, switchLamp = false, amb1 = true, diff1 = true, spec1 = true, amb2 = true, diff2 = true, spec2 = true, amb3 = true, diff3 = true, spec3 = true;
 double windowHeight = 800, windowWidth = 600, tmpWidth, tmpColumn, tmpHeight;
 double roomX, roomY, roomZ;
-double eyeX = 1, eyeY = 0.5, eyeZ = 1, refX = 0, refY = 0.3, refZ = 0;
+double eyeX = 0.5, eyeY = 0.5, eyeZ = 0.5, refX = 0, refY = 0.3, refZ = 0;
 double theta = 180.0, y = 1.36, z = 7.97888;
-double rotateX, rotateY, roteteZ;
+double rotateX, rotateY, rotateZ;
 
 
 // 카메라 변수
@@ -631,7 +631,7 @@ void lightTwo()
 
     glLightfv(GL_LIGHT1, GL_POSITION, light_position);
     glLightfv(GL_LIGHT1, GL_SPOT_DIRECTION, spot_direction);
-    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 90.0);
+    glLightf(GL_LIGHT1, GL_SPOT_CUTOFF, 70.0);
 
     glPopMatrix();
 }
@@ -639,14 +639,15 @@ void lightTwo()
 void photoFrame() {
     GLfloat color[3] = { 0 }, amb_coff, dif_coff;
 
-    amb_coff = 0.2;
-    dif_coff = 0.8;
+    amb_coff = 0.1;
+    dif_coff = 0.5;
 
     glPushMatrix();
-    setColorRGB(color, 163, 154, 147);
+    setColorRGB(color, 142, 211, 232);
     glColor3f(color[0], color[1], color[2]);
-    glTranslatef(0.8, 0.5, 0);
+    glTranslatef(0.8, 0.55, 0.1);
     glScalef(1.5, 2.5, 0.15);
+    setMaterial(color[0] * dif_coff, color[1] * dif_coff, 1, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff);
     glutSolidCube(0.1);
     glPopMatrix();
 
@@ -975,7 +976,7 @@ void display() {
     glEnable(GL_LIGHTING);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(60, 1, 0.1, 100);
+    gluPerspective(75, 1, 0.1, 100);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
@@ -985,9 +986,10 @@ void display() {
     glTranslatef(eyeX, 0, eyeZ);
     glRotatef(rotateY, 0, 1, 0);
     glTranslatef(-eyeX, 0, -eyeZ);
+
     innerDisplay();
     glPopMatrix();
-    
+
     glutSwapBuffers();
 }
 
@@ -999,15 +1001,18 @@ void myKeyboardFunc(unsigned char key, int x, int y)
     {
     case 'w': // move eye point upwards along Y axis
         eyeY += 1.0 / 10;
+        
         break;
     case 's': // move eye point downwards along Y axis
         eyeY -= 1.0 / 10;
+     
+
         break;
     case 'a': // move eye point left along X axis
-        rotateY += 1;
+        rotateY -= 1;
         break;
     case 'd': // move eye point right along X axis
-        rotateY -= 1;
+        rotateY += 1;
         break;
     case 'o':  //zoom out
         eyeZ += 1.0 / 10;
@@ -1036,6 +1041,15 @@ void myKeyboardFunc(unsigned char key, int x, int y)
         break;
     case 'l': //move ref point towards screen/ along z axis
         refZ -= 1.0 / 10;
+        break;
+    case 'c': //move ref point towards screen/ along z axis
+        eyeX = 0.5;
+        eyeZ = 0.5;
+        break;
+    case '9': //move ref point towards screen/ along z axis
+        eyeX = 1;
+        eyeZ = 1;
+
         break;
     case '0': //to turn on and off light one
         if (switchOne == false)
@@ -1101,9 +1115,9 @@ void myKeyboardFunc(unsigned char key, int x, int y)
     case'8':
         if (diff2 == false) { diff2 = true; break; }
         else { diff2 = false; break; }
-    case'9':
-        if (spec2 == false) { spec2 = true; break; }
-        else { spec2 = false; break; }
+    //case'9':
+    //    if (spec2 == false) { spec2 = true; break; }
+    //    else { spec2 = false; break; }
     case'e': //turn on/off ambient lamp light
         if (amb3 == false) { amb3 = true; break; }
         else { amb3 = false; break; }
