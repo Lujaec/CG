@@ -17,7 +17,7 @@ double roomX, roomY, roomZ;
 double eyeX = 0.5, eyeY = 0.5, eyeZ = 0.5, refX = 0, refY = 0.3, refZ = 0;
 double theta = 180.0, y = 1.36, z = 7.97888;
 double rotateX, rotateY, rotateZ;
-unsigned int texture[20];
+unsigned int texture[20], rugTexture, horseTexture;
 
 
 // 카메라 변수
@@ -83,7 +83,7 @@ void drawCube()
     glEnd();
 }
 
-void drawCube1(GLfloat difX, GLfloat difY, GLfloat difZ, GLfloat ambX = 0, GLfloat ambY = 0, GLfloat ambZ = 0, GLfloat shine = 50)
+void drawCube1(GLfloat difX, GLfloat difY, GLfloat difZ, GLfloat ambX = 0, GLfloat ambY = 0, GLfloat ambZ = 0, GLfloat shine = 50, int textureIdx = -1)
 {
     GLfloat no_mat[] = { 0.0, 0.0, 0.0, 1.0 };
     GLfloat mat_ambient[] = { ambX, ambY, ambZ, 1.0 };
@@ -97,13 +97,14 @@ void drawCube1(GLfloat difX, GLfloat difY, GLfloat difZ, GLfloat ambX = 0, GLflo
     glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
     glMaterialfv(GL_FRONT, GL_EMISSION, no_mat);
 
-    glBindTexture(GL_TEXTURE_2D, texture[0]);
+    glBindTexture(GL_TEXTURE_2D, texture[textureIdx]);
     glBegin(GL_QUADS);
     for (GLint i = 0; i < 6; i++)
     {
         getNormal3p(v_cube[quadIndices[i][0]][0], v_cube[quadIndices[i][0]][1], v_cube[quadIndices[i][0]][2],
             v_cube[quadIndices[i][1]][0], v_cube[quadIndices[i][1]][1], v_cube[quadIndices[i][1]][2],
             v_cube[quadIndices[i][2]][0], v_cube[quadIndices[i][2]][1], v_cube[quadIndices[i][2]][2]);
+
         glTexCoord2f(0, 0), glVertex3fv(&v_cube[quadIndices[i][0]][0]);
         glTexCoord2f(1, 0), glVertex3fv(&v_cube[quadIndices[i][1]][0]);
         glTexCoord2f(1, 1), glVertex3fv(&v_cube[quadIndices[i][2]][0]);
@@ -134,10 +135,20 @@ void setColorRGB(GLfloat* color, int r, int g, int b) {
     color[2] = (1.0) * b / 255;
 }
 
+void setTxtureArray(unsigned int * textureArray, int bottom, int top, int front, int back, int right, int left) { //사용안함
+    textureArray[0] = bottom;
+    textureArray[1] = top;
+    textureArray[2] = front;
+    textureArray[3] = back;
+    textureArray[4] = right;
+    textureArray[5] = left;
+}
+
 void room()
 {
     roomX = 1, roomZ = 1, roomY = 0.8;
     GLfloat color[3] = { 0 }, amb_coff, dif_coff;
+    unsigned int textureArray[6] = {};
 
     amb_coff = 0.4;
     dif_coff = 0.8;
@@ -146,7 +157,7 @@ void room()
     setColorRGB(color, 163, 154, 147);
     glColor3f(color[0], color[1], color[2]);
     glScalef(roomX, roomY, 0.01);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 1);
     glPopMatrix();
 
 
@@ -157,10 +168,8 @@ void room()
     setColorRGB(color, 187, 183, 180);
     glColor3f(color[0], color[1], color[2]);
     glScalef(0.01, roomY, roomZ);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 2);
     glPopMatrix();
-
-
 
     //바닥
     amb_coff = 0.4;
@@ -170,8 +179,7 @@ void room()
 
     glColor3f(color[0], color[1], color[2]);
     glScalef(roomX, 0.0001, roomZ);
-    glBindTexture(GL_TEXTURE_2D, texture[0]);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 0);
     glPopMatrix();
 
     //천장
@@ -184,7 +192,7 @@ void room()
     glTranslatef(0, 0.80, 0);
 
     glScalef(roomX, 0.0001, roomZ);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 1);
     glPopMatrix();
 
     amb_coff = 0.4;
@@ -194,7 +202,7 @@ void room()
     glColor3f(color[0], color[1], color[2]);
     glTranslatef(1, 0, 0);
     glScalef(0.01, roomY, roomZ);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 1);
     glPopMatrix();
 
     amb_coff = 0.4;
@@ -205,7 +213,7 @@ void room()
     glColor3f(color[0], color[1], color[2]);
     glTranslatef(0, 0, 1);
     glScalef(roomX, roomY, 0.01);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 1);
     glPopMatrix();
 }
 
@@ -616,14 +624,11 @@ void lightTwo()
         spot_direction[i] = light_target[i] - light_position[i];
 
     /* glPushMatrix();
-
      glTranslatef(light_position[0], light_position[1], light_position[2]);
      glutSolidCube(0.1);
      glTranslatef(spot_direction[0], spot_direction[1], spot_direction[2]);
      glutSolidCube(0.1);
-
      glPopMatrix();*/
-
      //glEnable( GL_LIGHT1);
 
     if (amb2 == true) { glLightfv(GL_LIGHT1, GL_AMBIENT, light_ambient); }
@@ -668,8 +673,8 @@ void rug() {
     quadratic = gluNewQuadric();
     gluQuadricDrawStyle(quadratic, GLU_FILL);
 
-    amb_coff = 0.1;
-    dif_coff = 0.7;
+    amb_coff = 0.3;
+    dif_coff = 1.0;
 
     //원기둥
     glPushMatrix();
@@ -680,21 +685,27 @@ void rug() {
     gluCylinder(quadratic, r, r, pilir_height, 32, 32);
     glPopMatrix();
 
+    //위에
     glPushMatrix();
-    setColorRGB(color, 245, 237, 230);
+    setColorRGB(color, 255, 255, 255);
     glColor3f(color[0], color[1], color[2]);
     glRotatef(90, 1, 0, 0);
     setMaterial(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff);
-    gluCylinder(quadratic, r, 0, 0.01f, 32, 32);
+    glBindTexture(GL_TEXTURE_2D, rugTexture);
+    gluQuadricTexture(quadratic, GL_TRUE);
+    gluCylinder(quadratic, r, 0, 0, 32, 32);
     glPopMatrix();
+    glBindTexture(GL_TEXTURE_2D, -1);
 
-    glPushMatrix();
+
+    //위에, 이거 왜 있지??
+    /*glPushMatrix();
     setColorRGB(color, 245, 237, 230);
     glColor3f(color[0], color[1], color[2]);
     glRotatef(90, 1, 0, 0);
     setMaterial(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff);
     gluCylinder(quadratic, r, 0, 0.01f, 32, 32);
-    glPopMatrix();
+    glPopMatrix();*/
 }
 
 void car(void)
@@ -1143,16 +1154,16 @@ void myKeyboardFunc(unsigned char key, int x, int y)
 void init(void)
 {
     int width, height, nrChannels;
-    unsigned char * img = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
-
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glShadeModel(GL_SMOOTH);
     glEnable(GL_DEPTH_TEST);
- 
+
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
     glGenTextures(20, texture); //texture size 만큼
 
-    glBindTexture(GL_TEXTURE_2D, texture[0]);
+   
+    unsigned char* img = stbi_load("marble_tile.jpg", &width, &height, &nrChannels, 0);
+    glBindTexture(GL_TEXTURE_2D, texture[0]); // 방바닥
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
@@ -1163,6 +1174,74 @@ void init(void)
 
     glEnable(GL_TEXTURE_2D);
     stbi_image_free(img);
+
+    //rug
+    img = stbi_load("rug.jpg", &width, &height, &nrChannels, 0);
+    glGenTextures(1, &rugTexture); //texture size 만큼
+
+    glBindTexture(GL_TEXTURE_2D, rugTexture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+        GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+        GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
+
+    glEnable(GL_TEXTURE_2D);
+    stbi_image_free(img);
+
+
+    //horse
+    img = stbi_load("horse.jpg", &width, &height, &nrChannels, 0);
+    glGenTextures(1, &horseTexture); //texture size 만큼
+
+    glBindTexture(GL_TEXTURE_2D, horseTexture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+        GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+        GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
+
+    glEnable(GL_TEXTURE_2D);
+    stbi_image_free(img);
+
+    //windowWall
+    stbi_set_flip_vertically_on_load(true);
+    img = stbi_load("windowWall.jpg", &width, &height, &nrChannels, 0);
+
+    glBindTexture(GL_TEXTURE_2D, texture[2]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+        GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+        GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
+
+    glEnable(GL_TEXTURE_2D);
+    stbi_image_free(img);
+    stbi_set_flip_vertically_on_load(false);
+
+    //roomWall
+    img = stbi_load("roomWall.jpeg", &width, &height, &nrChannels, 0);
+    glBindTexture(GL_TEXTURE_2D, texture[3]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+        GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+        GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
+
+    glEnable(GL_TEXTURE_2D);
+
+
+    stbi_image_free(img);
+
+    texture[1] = texture[4] = texture[3];
 }
 
 int main(int argc, char** argv)
