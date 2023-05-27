@@ -260,7 +260,7 @@ void room()
 void bookShelf() {
     GLfloat color[3] = { 0 }, amb_coff, dif_coff;
     double size = 0.1;
-    setColorRGB(color, 171, 209, 222);
+    setColorRGB(color, 163, 154, 147);
     glColor3f(color[0], color[1], color[2]);
 
     amb_coff = 0.4;
@@ -270,7 +270,7 @@ void bookShelf() {
 
     glPushMatrix();
     glScalef(size, size, 0.01);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
 
@@ -281,7 +281,7 @@ void bookShelf() {
 
 
     glScalef(0.01, size, size);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
     //창 있는왼쪽 벽 맞은편
@@ -292,7 +292,7 @@ void bookShelf() {
 
     glTranslatef(size, 0, 0);
     glScalef(0.01, size, size);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
 
@@ -304,7 +304,7 @@ void bookShelf() {
 
 
     glScalef(size, 0.01, size);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
     glTranslatef(0, size, 0);
@@ -317,7 +317,7 @@ void bookShelf() {
 
 
     glScalef(size, size, 0.01);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
 
@@ -326,7 +326,7 @@ void bookShelf() {
     //창 있는왼쪽 벽
     glPushMatrix();
     glScalef(0.01, size, size);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
     //창 있는왼쪽 벽 맞은편
@@ -335,7 +335,7 @@ void bookShelf() {
     glPushMatrix();
     glTranslatef(size, 0, 0);
     glScalef(0.01, size, size);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
 
@@ -344,7 +344,7 @@ void bookShelf() {
     dif_coff = 0.8;
     glPushMatrix();
     glScalef(size, 0.01, size);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
     glTranslatef(0, size, 0);
@@ -355,7 +355,7 @@ void bookShelf() {
 
     glPushMatrix();
     glScalef(size, size, 0.01);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
 
@@ -364,7 +364,7 @@ void bookShelf() {
     //창 있는왼쪽 벽
     glPushMatrix();
     glScalef(0.01, size, size);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
     //창 있는왼쪽 벽 맞은편
@@ -373,7 +373,7 @@ void bookShelf() {
     glPushMatrix();
     glTranslatef(size, 0, 0);
     glScalef(0.01, size, size);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
 
@@ -382,7 +382,7 @@ void bookShelf() {
     dif_coff = 0.8;
     glPushMatrix();
     glScalef(size, 0.01, size);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
     glTranslatef(0, size, 0);
@@ -391,7 +391,7 @@ void bookShelf() {
     dif_coff = 0.8;
     glPushMatrix();
     glScalef(size + 0.01, 0.01, size + 0.01);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
     glPopMatrix();
@@ -434,7 +434,7 @@ void bed() {
     setColorRGB(color, 219, 188, 147);
     glColor3f(color[0], color[1], color[2]);
     glScalef(column[1], height[1], width[1]);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 6);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
     //침대의 베이지 부분 맨 아래 바로 위  2
@@ -445,7 +445,7 @@ void bed() {
     glColor3f(color[0], color[1], color[2]);
     glTranslatef(0, height[1], 0);
     glScalef(column[2], height[2], width[2]);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 6);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
     //2 의 바로 옆    3
@@ -456,7 +456,7 @@ void bed() {
     glColor3f(color[0], color[1], color[2]);
     glTranslatef(column[2], height[1], 0);
     glScalef(column[2], height[2], width[2]);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 6);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
     //3의 바로 옆      4
@@ -467,7 +467,7 @@ void bed() {
     glColor3f(color[0], color[1], color[2]);
     glTranslatef(column[2] + column[3], height[1], 0);
     glScalef(column[4], height[4], width[4]);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 6);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
     //베이지색의 벽에 기대어 있는 부분 ../5
@@ -478,7 +478,7 @@ void bed() {
     glColor3f(color[0], color[1], color[2]);
     glTranslatef(0, height[0], 0);
     glScalef(column[5], height[5], width[5]);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 6);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
     //회색 매트리스  .. /6
@@ -530,7 +530,7 @@ void desk() {
     glColor3f(color[0], color[1], color[2]);
     glTranslatef(x_for_desk[0], y_for_desk[0], z_for_desk[0]);
     glScalef(column_for_desk[0], height_for_desk[0], width_for_desk[0]);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 6, 14);
     glPopMatrix();
 
     //왼쪽 다리
@@ -541,18 +541,18 @@ void desk() {
     glColor3f(color[0], color[1], color[2]);
     glTranslatef(x_for_desk[1], y_for_desk[1], z_for_desk[1]);
     glScalef(column_for_desk[1], height_for_desk[1], width_for_desk[1]);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff);
+    drawCube1_front_texture(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 6, 14);
     glPopMatrix();
 
     //오른쪽 다리
     amb_coff = 0.2;
-    dif_coff = 0.8;
+    dif_coff = 0.9;
     glPushMatrix();
-    setColorRGB(color, 207, 206, 204);
+    setColorRGB(color, 233, 239, 242);
     glColor3f(color[0], color[1], color[2]);
     glTranslatef(x_for_desk[2], y_for_desk[2], z_for_desk[2]);
     glScalef(column_for_desk[2], height_for_desk[2], width_for_desk[2]);
-    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff);
+    drawCube1_front_texture(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 16);
     glPopMatrix();
 }
 
@@ -762,39 +762,73 @@ void car(void)
     double dif_coff = 0.8, amb_coff = 0.2;
 
 
-    setColorRGB(color, 212, 34, 34);
+    setColorRGB(color, 255, 20, 20);
     glColor3f(color[0], color[1], color[2]);
     setMaterial(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff);
 
     glPushMatrix();
     glPushMatrix();
+
     glPushMatrix();                   // body
-    glScalef(4, 1, 2);
-    glutSolidCube(.5);
-    glTranslatef(-.05, .3, 0);
+
+    /*glScalef(4, 1, 2);
+    glutSolidCube(.5);*/
+
+    glTranslatef(-0.8, 0, -0.3);
+    glScalef(1.8, 0.5, 0.8);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 10, 18);
+    
+    /*glTranslatef(-.05, .3, 0);
     glScalef(0.6, 3, 2);
-    glutSolidCube(.25);
-    glTranslatef(-.12, .001, -.001);
-    glScalef(1, 1.8, 2.48);
+    glutSolidCube(.25);*/
+    
+    glTranslatef(0.25, 1, 0);
+    glScalef(0.4, 1, 1);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 10);
+
+
+    glPushMatrix();
+    glTranslatef(0.01, 0.9, -.001);
+    glScalef(0.5, 1.1, 1);
     glRotatef(230, 0, 0, 250);
-    glutSolidCube(.1);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 10);
     glPopMatrix();
+
+    /*glPushMatrix();
+    glTranslatef(1, 0.87, -.001);
+    glScalef(0.5, 1.2, 1);
+    glRotatef(230, 0, 0, 250);
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 6);
+    glPopMatrix();*/
+
+    glPopMatrix();
+
     glTranslatef(0, 0, .5);
+
+
+    //////wheel
     glPushMatrix();
-    glTranslatef(-.4, -.2, 0);
+    glTranslatef(-.4, 0, 0);
+    setColorRGB(color, 0, 0, 0);
+    setMaterial(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff);
     glutSolidTorus(.1, .2, 8, 8);       // wheel
     glTranslatef(1, 0, 0);
     glutSolidTorus(.1, .2, 8, 8);       // wheel
     glPopMatrix();
+
     glTranslatef(0, 0, -1);
+
     glPushMatrix();
-    glTranslatef(-.4, -.2, 0);
+    glTranslatef(-.4, 0, 0);
     glutSolidTorus(.1, .2, 8, 8);       // wheel
     glTranslatef(1, 0, 0);
     glutSolidTorus(.1, .2, 8, 8);       // wheel
     glPopMatrix();
+
     glPopMatrix();
     glPopMatrix();
+
+    glBindTexture(GL_TEXTURE_2D, -1);
 }
 
 void lamp() {
@@ -966,14 +1000,15 @@ void chair() {
 void shelf() {
     GLfloat color[3] = { 0 }, amb_coff, dif_coff;
 
-    amb_coff = 0.2;
-    dif_coff = 0.8;
+    amb_coff = 0.9;
+    dif_coff = 0.9;
     glPushMatrix();
     setColorRGB(color, 217, 216, 212);
     glColor3f(color[0], color[1], color[2]);
-    glScalef(1.6, 0.7, 0.5);
-    setMaterial(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff);
-    glutSolidCube(0.1);
+    glScalef(0.16, 0.07, 0.05);
+    /*setMaterial(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff);
+    glutSolidCube(0.1);*/
+    drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 12);
     glPopMatrix();
 }
 
@@ -988,7 +1023,7 @@ void innerDisplay() {
     desk();
 
     glPushMatrix();
-    glTranslatef(0.35, 0.67, 0.2);
+    glTranslatef(0.265, 0.64, 0.2);
     shelf();
     glTranslatef(0.16, -0.07, 0);
     shelf();
@@ -1223,6 +1258,7 @@ void init(void)
     glEnable(GL_TEXTURE_2D);
     stbi_image_free(img);
 
+
     //rug
     img = stbi_load("rug.jpg", &width, &height, &nrChannels, 0);
     glGenTextures(1, &rugTexture); //texture size 만큼
@@ -1243,7 +1279,7 @@ void init(void)
     
 
     //windowWall
-    stbi_set_flip_vertically_on_load(true);
+    
     img = stbi_load("windowWall.jpg", &width, &height, &nrChannels, 0);
 
     glBindTexture(GL_TEXTURE_2D, texture[2]);
@@ -1257,7 +1293,7 @@ void init(void)
 
     glEnable(GL_TEXTURE_2D);
     stbi_image_free(img);
-    stbi_set_flip_vertically_on_load(false);
+    
 
     //roomWall
     img = stbi_load("roomWall.jpeg", &width, &height, &nrChannels, 0);
@@ -1332,6 +1368,128 @@ void init(void)
     img = stbi_load("horse.jpg", &width, &height, &nrChannels, 0);
 
     glBindTexture(GL_TEXTURE_2D, texture[10]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+        GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+        GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
+
+    glEnable(GL_TEXTURE_2D);
+    stbi_image_free(img);
+
+    //아마존
+    stbi_set_flip_vertically_on_load(true);
+    img = stbi_load("amazon.jpg", &width, &height, &nrChannels, 0);
+
+    glBindTexture(GL_TEXTURE_2D, texture[11]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+        GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+        GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
+
+    glEnable(GL_TEXTURE_2D);
+    stbi_image_free(img);
+    stbi_set_flip_vertically_on_load(false);
+
+    //brick
+    img = stbi_load("brick.jpg", &width, &height, &nrChannels, 0);
+
+    glBindTexture(GL_TEXTURE_2D, texture[12]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+        GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+        GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
+
+    glEnable(GL_TEXTURE_2D);
+    stbi_image_free(img);
+
+    //beige wood
+    img = stbi_load("beige_wood.jpg", &width, &height, &nrChannels, 0);
+
+    glBindTexture(GL_TEXTURE_2D, texture[13]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+        GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+        GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
+
+    glEnable(GL_TEXTURE_2D);
+    stbi_image_free(img);
+
+    //metal
+    img = stbi_load("metal.jpg", &width, &height, &nrChannels, 0);
+
+    glBindTexture(GL_TEXTURE_2D, texture[14]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+        GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+        GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
+
+    glEnable(GL_TEXTURE_2D);
+    stbi_image_free(img);
+
+    //cabinet
+    img = stbi_load("cabinet.jpg", &width, &height, &nrChannels, 0);
+
+    glBindTexture(GL_TEXTURE_2D, texture[15]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+        GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+        GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
+
+    glEnable(GL_TEXTURE_2D);
+    stbi_image_free(img);
+
+    //cabinet
+    img = stbi_load("cabinet2.jpg", &width, &height, &nrChannels, 0);
+
+    glBindTexture(GL_TEXTURE_2D, texture[16]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+        GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+        GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
+
+    glEnable(GL_TEXTURE_2D);
+    stbi_image_free(img);
+
+    //car
+    img = stbi_load("car.jpg", &width, &height, &nrChannels, 0);
+
+    glBindTexture(GL_TEXTURE_2D, texture[17]);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+        GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+        GL_NEAREST);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, img);
+
+    glEnable(GL_TEXTURE_2D);
+    stbi_image_free(img);
+
+    //car logo
+    img = stbi_load("lambo.png", &width, &height, &nrChannels, 0);
+
+    glBindTexture(GL_TEXTURE_2D, texture[18]);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
