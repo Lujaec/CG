@@ -7,8 +7,9 @@ var shadedCube = function () {
   var numPositions = 36;
 
   //texture data 설정
+  var idx = 0;
   var texSize = 64;
-  var texture;
+  var texture = {};
   var textureApple;
   var texturePineapple;
   var textureWatermelon;
@@ -49,7 +50,7 @@ var shadedCube = function () {
     vec4(0, 0, 1, 1),
   ];
 
-  var lightPosition = vec4(0.7, 1, 1, 0.0);
+  var lightPosition = vec4(0.5, 0.1, 2.5, 0.0);
   var lightAmbient = vec4(0.2, 0.2, 0.2, 1.0);
   var lightDiffuse = vec4(1.0, 1.0, 1.0, 1.0);
   var lightSpecular = vec4(0.8, 0.8, 0.8, 1.0);
@@ -77,9 +78,9 @@ var shadedCube = function () {
   var thetaLoc;
 
   function configureTexture(image) {
-    texture = gl.createTexture();
+    texture[idx] = gl.createTexture();
 
-    gl.bindTexture(gl.TEXTURE_2D, texture);
+    gl.bindTexture(gl.TEXTURE_2D, texture[idx]);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image);
     gl.generateMipmap(gl.TEXTURE_2D);
     gl.texParameteri(
@@ -89,6 +90,7 @@ var shadedCube = function () {
     );
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
 
+    idx += 1;
     gl.uniform1i(gl.getUniformLocation(program, "uTexMap"), 0);
   }
 
@@ -185,7 +187,7 @@ var shadedCube = function () {
     program = initShaders(gl, "vertex-shader", "fragment-shader");
     gl.useProgram(program);
     colorCube();
-    for (let i = 0; i < 6; ++i) texCoordsArray.push(texCoord[0]);
+    for (let i = 0; i < 6; ++i) texCoordsArray.push(texCoord[0]); //좌표축을 위해 텍스쳐 매핑한듯
 
     var nBuffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, nBuffer);
@@ -217,6 +219,8 @@ var shadedCube = function () {
     var image2 = document.getElementById("texPineapple");
     var image3 = document.getElementById("texWatermelon");
 
+    configureTexture(image1);
+    configureTexture(image2);
     configureTexture(image3);
 
     viewerPos = vec3(1, 1, -1.0);
@@ -273,9 +277,6 @@ var shadedCube = function () {
   var render = function () {
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-    var image1 = document.getElementById("texApple");
-    var image2 = document.getElementById("texPineapple");
-    var image3 = document.getElementById("texWatermelon");
     if (flag) theta[axis] += 1.5;
 
     modelViewMatrix = lookAt(eye, at, up);
@@ -303,7 +304,10 @@ var shadedCube = function () {
     gl.bufferData(gl.ARRAY_BUFFER, flatten(positionsArray), gl.STATIC_DRAW);
     for (let i = 0; i < 6; ++i) {
       //i = 2 , 3 , 4일 때 텍스쳐 매핑 해줘야 함
-      if (i == 2) configureTexture(image1);
+      if (i == 2) gl.bindTexture(gl.TEXTURE_2D, texture[0]);
+      if (i == 3) gl.bindTexture(gl.TEXTURE_2D, texture[1]);
+      if (i == 4) gl.bindTexture(gl.TEXTURE_2D, texture[2]);
+
       gl.drawArrays(gl.TRIANGLES, i * 6, 6);
     }
 
@@ -315,6 +319,7 @@ var shadedCube = function () {
       false,
       flatten(modelViewMatrix)
     );
+
     gl.drawArrays(gl.LINES, 0, 6);
 
     //console.log(texCoordsArray.length);
