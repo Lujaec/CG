@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
-  <button id="ButtonX">Rotate X</button>
-  <button id="ButtonY">Rotate Y</button>
-  <button id="ButtonZ">Rotate Z</button>
-  <button id="ButtonT">Toggle Rotation</button>
+  <button id="ButtonClock">Rotate clockwise</button>
+  <button id="ButtonCounterClock">Rotate counter-clockwise</button>
+  <button id="ButtonT" hidden>Toggle Rotation</button>
 
   <script id="vertex-shader" type="x-shader/x-vertex">
     #version 300 es
@@ -11,15 +10,18 @@
     in  vec4 aPosition;
     in  vec3 aNormal;
     in  vec2 aTexCoord;
+    in  vec4 aIsAxe;
 
     out vec4 vColor;
     out vec2 vTexCoord;
+    out vec4 vIsAxe;
 
     uniform vec4 uAmbientProduct, uDiffuseProduct, uSpecularProduct;
     uniform mat4 uModelViewMatrix;
     uniform mat4 uProjectionMatrix;
     uniform vec4 uLightPosition;
     uniform float uShininess;
+    uniform vec4 uIsAxe; 
 
     void main()
     {
@@ -54,9 +56,18 @@
         }
 
         gl_Position = uProjectionMatrix * uModelViewMatrix *aPosition;
-        vColor = ambient + diffuse +specular;
+        
+        if(uIsAxe.x > 2.5)
+          vColor = vec4(0, 0, 1, 1);
+        else if(uIsAxe.x > 1.5)
+          vColor = vec4(0, 1, 0, 1);
+        else if(uIsAxe.x > 0.5)
+          vColor = vec4(1, 0, 0, 1);        
+        else
+          vColor = ambient + diffuse + specular;
 
         vTexCoord = aTexCoord;
+        vIsAxe = uIsAxe;
     }
   </script>
 
@@ -67,7 +78,8 @@
 
 
     in vec4 vColor;
-    in  vec2 vTexCoord;
+    in vec2 vTexCoord;
+    in vec4 vIsAxe;
 
     out vec4 fColor;
 
@@ -75,7 +87,7 @@
     void
     main()
     {
-
+      
       fColor = vColor * texture(uTextureMap, vTexCoord);
     }
   </script>
@@ -91,5 +103,7 @@
     <img id="texApple" src="image/apple.jpg" hidden /></img>
     <img id="texPineapple" src="image/pineapple.jpg" hidden /></img>
     <img id="texWatermelon" src="image/watermelon.jpg" hidden /></img>
+    <img id="texRed" src="image/red.jpg" hidden /></img>
+
   </body>
 </html>
