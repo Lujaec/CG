@@ -8,6 +8,7 @@ var shadedCube = function () {
 
   //texture data 설정
   var idx = 0;
+  var direction = 1;
   var texSize = 64;
   var texture = {};
   var textureApple;
@@ -69,7 +70,7 @@ var shadedCube = function () {
   var xAxis = 0;
   var yAxis = 1;
   var zAxis = 2;
-  var axis = 0;
+  var axis = zAxis;
   var theta = vec3(0, 0, 0);
   var eye = vec3(0.6, 0.6, 0.6);
   var at = vec3(0.0, 0.0, 0.0);
@@ -94,7 +95,7 @@ var shadedCube = function () {
     gl.uniform1i(gl.getUniformLocation(program, "uTexMap"), 0);
   }
 
-  var flag = false;
+  var flag = true;
 
   function quad(a, b, c, d) {
     var t1 = subtract(vertices[b], vertices[a]);
@@ -231,14 +232,11 @@ var shadedCube = function () {
     var diffuseProduct = mult(lightDiffuse, materialDiffuse);
     var specularProduct = mult(lightSpecular, materialSpecular);
 
-    document.getElementById("ButtonX").onclick = function () {
-      axis = xAxis;
+    document.getElementById("ButtonClock").onclick = function () {
+      direction = 1;
     };
-    document.getElementById("ButtonY").onclick = function () {
-      axis = yAxis;
-    };
-    document.getElementById("ButtonZ").onclick = function () {
-      axis = zAxis;
+    document.getElementById("ButtonCounterClock").onclick = function () {
+      direction = -1;
     };
     document.getElementById("ButtonT").onclick = function () {
       flag = !flag;
@@ -277,7 +275,7 @@ var shadedCube = function () {
   var render = function () {
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-    if (flag) theta[axis] += 1.5;
+    if (flag) theta[axis] += direction * 1.5;
 
     modelViewMatrix = lookAt(eye, at, up);
     modelViewMatrix = mult(
@@ -301,6 +299,8 @@ var shadedCube = function () {
       flatten(modelViewMatrix)
     );
 
+    gl.uniform4fv(gl.getUniformLocation(program, "uIsAxe"), vec4(0, 0, 0, 0));
+
     gl.bufferData(gl.ARRAY_BUFFER, flatten(positionsArray), gl.STATIC_DRAW);
     for (let i = 0; i < 6; ++i) {
       //i = 2 , 3 , 4일 때 텍스쳐 매핑 해줘야 함
@@ -320,7 +320,16 @@ var shadedCube = function () {
       flatten(modelViewMatrix)
     );
 
-    gl.drawArrays(gl.LINES, 0, 6);
+    gl.uniform4fv(gl.getUniformLocation(program, "uIsAxe"), vec4(1, 1, 1, 1));
+    gl.drawArrays(gl.LINES, 0, 2);
+
+    gl.uniform4fv(gl.getUniformLocation(program, "uIsAxe"), vec4(2, 2, 2, 2));
+    gl.drawArrays(gl.LINES, 2, 2);
+
+    gl.uniform4fv(gl.getUniformLocation(program, "uIsAxe"), vec4(3, 3, 3, 3));
+    gl.drawArrays(gl.LINES, 4, 2);
+
+    //gl.drawArrays(gl.LINES, 0, 6);
 
     //console.log(texCoordsArray.length);
     requestAnimationFrame(render);
