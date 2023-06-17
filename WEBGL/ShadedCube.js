@@ -51,15 +51,19 @@ var shadedCube = function () {
     vec4(0, 0, 1, 1),
   ];
 
-  var lightPosition = vec4(0.5, 0.1, 2.5, 0.0);
-  var lightAmbient = vec4(0.2, 0.2, 0.2, 1.0);
+  var lightPosition = vec4(0, 1, 2, 0.0);
+  var lightAmbient = vec4(1, 1, 1, 1.0);
   var lightDiffuse = vec4(1.0, 1.0, 1.0, 1.0);
-  var lightSpecular = vec4(0.8, 0.8, 0.8, 1.0);
+  var lightSpecular = vec4(1, 1, 1, 1.0);
 
-  var materialAmbient = vec4(0.5, 0.5, 0.0, 1.0);
-  var materialDiffuse = vec4(1, 0.85, 0.0, 1.0);
-  var materialSpecular = vec4(1.0, 0.8, 0.0, 1.0);
-  var materialShininess = 90.0;
+  var texMaterialAmbient = vec4(0.2, 0.2, 0.2, 1.0);
+  var texMaterialDiffuse = vec4(0.9, 0.9, 0.9, 1.0);
+  var texMaterialSpecular = vec4(0.1, 0.1, 0.1, 1.0);
+
+  var materialAmbient = vec4(0.2, 0.2, 0.0, 1.0);
+  var materialDiffuse = vec4(0.9, 0.9, 0.0, 1.0);
+  var materialSpecular = vec4(0.1, 0.1, 0, 1.0);
+  var materialShininess = 70.0;
 
   var ctm;
   var ambientColor, diffuseColor, specularColor;
@@ -135,6 +139,19 @@ var shadedCube = function () {
     var normal = cross(t1, t2);
     normal = vec3(normal);
 
+    gl.uniform4fv(
+      gl.getUniformLocation(program, "uAmbientProduct"),
+      mult(lightAmbient, materialAmbient)
+    );
+    gl.uniform4fv(
+      gl.getUniformLocation(program, "uDiffuseProduct"),
+      mult(lightDiffuse, materialDiffuse)
+    );
+    gl.uniform4fv(
+      gl.getUniformLocation(program, "uSpecularProduct"),
+      mult(lightSpecular, materialSpecular)
+    );
+
     // 1 0 3 2
     positionsArray.push(vertices[a]);
     normalsArray.push(normal);
@@ -163,11 +180,11 @@ var shadedCube = function () {
 
   function colorCube() {
     quadNonTexure(1, 0, 3, 2);
-    quad(2, 3, 7, 6); //fruit 1
-    quad(3, 0, 4, 7); //fruit 2
-    quad(6, 5, 1, 2); //fruit 3
+    quad(2, 3, 7, 6); //fruit apple
+    quad(3, 0, 4, 7); //fruit pineApple
+    quadNonTexure(6, 5, 1, 2); //fruit watermelon
     quadNonTexure(4, 5, 6, 7);
-    quadNonTexure(5, 4, 0, 1);
+    quad(5, 4, 0, 1);
   }
 
   window.onload = function init() {
@@ -278,14 +295,7 @@ var shadedCube = function () {
     if (flag) theta[axis] += direction * 1.5;
 
     modelViewMatrix = lookAt(eye, at, up);
-    modelViewMatrix = mult(
-      modelViewMatrix,
-      rotate(theta[xAxis], vec3(1, 0, 0))
-    );
-    modelViewMatrix = mult(
-      modelViewMatrix,
-      rotate(theta[yAxis], vec3(0, 1, 0))
-    );
+
     modelViewMatrix = mult(
       modelViewMatrix,
       rotate(theta[zAxis], vec3(0, 0, 1))
@@ -302,14 +312,51 @@ var shadedCube = function () {
     gl.uniform4fv(gl.getUniformLocation(program, "uIsAxe"), vec4(0, 0, 0, 0));
 
     gl.bufferData(gl.ARRAY_BUFFER, flatten(positionsArray), gl.STATIC_DRAW);
-    for (let i = 0; i < 6; ++i) {
-      //i = 2 , 3 , 4일 때 텍스쳐 매핑 해줘야 함
-      if (i == 2) gl.bindTexture(gl.TEXTURE_2D, texture[0]);
-      if (i == 3) gl.bindTexture(gl.TEXTURE_2D, texture[1]);
-      if (i == 4) gl.bindTexture(gl.TEXTURE_2D, texture[2]);
+    // for (let i = 0; i < 6; ++i) {
+    //   //i = 1 , 2 , 5일 때 텍스쳐 매핑 해줘야 함
+    //   if (i == 1) gl.bindTexture(gl.TEXTURE_2D, texture[0]);
+    //   if (i == 2) gl.bindTexture(gl.TEXTURE_2D, texture[1]);
+    //   if (i == 5) gl.bindTexture(gl.TEXTURE_2D, texture[2]);
 
-      gl.drawArrays(gl.TRIANGLES, i * 6, 6);
-    }
+    //   gl.drawArrays(gl.TRIANGLES, i * 6, 6);
+    // }
+
+    gl.uniform4fv(
+      gl.getUniformLocation(program, "uAmbientProduct"),
+      mult(lightAmbient, texMaterialAmbient)
+    );
+    gl.uniform4fv(
+      gl.getUniformLocation(program, "uDiffuseProduct"),
+      mult(lightDiffuse, texMaterialDiffuse)
+    );
+    gl.uniform4fv(
+      gl.getUniformLocation(program, "uSpecularProduct"),
+      mult(lightSpecular, texMaterialSpecular)
+    );
+
+    //텍스쳐 있는 면그리기
+    gl.bindTexture(gl.TEXTURE_2D, texture[0]);
+    gl.drawArrays(gl.TRIANGLES, 1 * 6, 6);
+    gl.bindTexture(gl.TEXTURE_2D, texture[1]);
+    gl.drawArrays(gl.TRIANGLES, 2 * 6, 6);
+    gl.bindTexture(gl.TEXTURE_2D, texture[2]);
+    gl.drawArrays(gl.TRIANGLES, 5 * 6, 6);
+
+    gl.uniform4fv(
+      gl.getUniformLocation(program, "uAmbientProduct"),
+      mult(lightAmbient, materialAmbient)
+    );
+    gl.uniform4fv(
+      gl.getUniformLocation(program, "uDiffuseProduct"),
+      mult(lightDiffuse, materialDiffuse)
+    );
+    gl.uniform4fv(
+      gl.getUniformLocation(program, "uSpecularProduct"),
+      mult(lightSpecular, materialSpecular)
+    );
+    gl.drawArrays(gl.TRIANGLES, 0 * 6, 6);
+    gl.drawArrays(gl.TRIANGLES, 3 * 6, 6);
+    gl.drawArrays(gl.TRIANGLES, 4 * 6, 6);
 
     //좌표 축그리기
     gl.bufferData(gl.ARRAY_BUFFER, flatten(positions), gl.STATIC_DRAW);
