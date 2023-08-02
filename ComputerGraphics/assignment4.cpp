@@ -21,7 +21,7 @@ unsigned int texture[30], rugTexture, horseTexture, carDoorTexture;
 
 
 
-// Ä«¸Ş¶ó º¯¼ö
+// ì¹´ë©”ë¼ ë³€ìˆ˜
 GLfloat cameraAngle = 0.0f;
 GLfloat cameraX = 0.5f;
 GLfloat cameraY = 0.0f;
@@ -176,7 +176,7 @@ void setColorRGB(GLfloat* color, int r, int g, int b) {
     color[2] = (1.0) * b / 255;
 }
 
-void setTxtureArray(unsigned int * textureArray, int bottom, int top, int front, int back, int right, int left) { //»ç¿ë¾ÈÇÔ
+void setTxtureArray(unsigned int * textureArray, int bottom, int top, int front, int back, int right, int left) { //ì‚¬ìš©ì•ˆí•¨
     textureArray[0] = bottom;
     textureArray[1] = top;
     textureArray[2] = front;
@@ -193,7 +193,7 @@ void room()
 
     amb_coff = 0.4;
     dif_coff = 0.8;
-    //¸» »çÁø °É·ÁÀÖ´Â º®
+    //ë§ ì‚¬ì§„ ê±¸ë ¤ìˆëŠ” ë²½
     glPushMatrix();
     setColorRGB(color, 163, 154, 147);
     glColor3f(color[0], color[1], color[2]);
@@ -204,7 +204,7 @@ void room()
 
     amb_coff = 0.4;
     dif_coff = 0.8;
-    //Ã¢ ÀÖ´Â¿ŞÂÊ º®
+    //ì°½ ìˆëŠ”ì™¼ìª½ ë²½
     glPushMatrix();
     setColorRGB(color, 187, 183, 180);
     glColor3f(color[0], color[1], color[2]);
@@ -212,7 +212,7 @@ void room()
     drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 2);
     glPopMatrix();
 
-    //¹Ù´Ú
+    //ë°”ë‹¥
     amb_coff = 0.4;
     dif_coff = 0.8;
     glPushMatrix();
@@ -223,7 +223,7 @@ void room()
     drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 0);
     glPopMatrix();
 
-    //ÃµÀå
+    //ì²œì¥
     amb_coff = 0.4;
     dif_coff = 0.8;
     glPushMatrix();
@@ -248,7 +248,7 @@ void room()
 
     amb_coff = 0.4;
     dif_coff = 0.8;
-    //¸» »çÁø °É·ÁÀÖ´Â º®
+    //ë§ ì‚¬ì§„ ê±¸ë ¤ìˆëŠ” ë²½
     glPushMatrix();
     setColorRGB(color, 163, 154, 147);
     glColor3f(color[0], color[1], color[2]);
@@ -266,7 +266,7 @@ void bookShelf() {
 
     amb_coff = 0.4;
     dif_coff = 0.8;
-    //¸» »çÁø °É·ÁÀÖ´Â º®
+    //ë§ ì‚¬ì§„ ê±¸ë ¤ìˆëŠ” ë²½
     glPushMatrix();
 
     glPushMatrix();
@@ -277,7 +277,7 @@ void bookShelf() {
 
     amb_coff = 0.4;
     dif_coff = 0.8;
-    //Ã¢ ÀÖ´Â¿ŞÂÊ º®
+    //ì°½ ìˆëŠ”ì™¼ìª½ ë²½
     glPushMatrix();
 
 
@@ -285,7 +285,7 @@ void bookShelf() {
     drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
-    //Ã¢ ÀÖ´Â¿ŞÂÊ º® ¸ÂÀºÆí
+    //ì°½ ìˆëŠ”ì™¼ìª½ ë²½ ë§ì€í¸
     amb_coff = 0.4;
     dif_coff = 0.8;
     glPushMatrix();
@@ -297,7 +297,7 @@ void bookShelf() {
     glPopMatrix();
 
 
-    //¹Ù´Ú
+    //ë°”ë‹¥
     amb_coff = 0.4;
     dif_coff = 0.8;
     glPushMatrix();
@@ -312,7 +312,7 @@ void bookShelf() {
 
     amb_coff = 0.4;
     dif_coff = 0.8;
-    //¸» »çÁø °É·ÁÀÖ´Â º®
+    //ë§ ì‚¬ì§„ ê±¸ë ¤ìˆëŠ” ë²½
 
     glPushMatrix();
 
@@ -324,13 +324,13 @@ void bookShelf() {
 
     amb_coff = 0.4;
     dif_coff = 0.8;
-    //Ã¢ ÀÖ´Â¿ŞÂÊ º®
+    //ì°½ ìˆëŠ”ì™¼ìª½ ë²½
     glPushMatrix();
     glScalef(0.01, size, size);
     drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
-    //Ã¢ ÀÖ´Â¿ŞÂÊ º® ¸ÂÀºÆí
+    //ì°½ ìˆëŠ”ì™¼ìª½ ë²½ ë§ì€í¸
     amb_coff = 0.4;
     dif_coff = 0.8;
     glPushMatrix();
@@ -340,7 +340,7 @@ void bookShelf() {
     glPopMatrix();
 
 
-    //¹Ù´Ú
+    //ë°”ë‹¥
     amb_coff = 0.4;
     dif_coff = 0.8;
     glPushMatrix();
@@ -352,7 +352,7 @@ void bookShelf() {
 
     amb_coff = 0.4;
     dif_coff = 0.8;
-    //¸» »çÁø °É·ÁÀÖ´Â º®
+    //ë§ ì‚¬ì§„ ê±¸ë ¤ìˆëŠ” ë²½
 
     glPushMatrix();
     glScalef(size, size, 0.01);
@@ -362,13 +362,13 @@ void bookShelf() {
 
     amb_coff = 0.4;
     dif_coff = 0.8;
-    //Ã¢ ÀÖ´Â¿ŞÂÊ º®
+    //ì°½ ìˆëŠ”ì™¼ìª½ ë²½
     glPushMatrix();
     glScalef(0.01, size, size);
     drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
-    //Ã¢ ÀÖ´Â¿ŞÂÊ º® ¸ÂÀºÆí
+    //ì°½ ìˆëŠ”ì™¼ìª½ ë²½ ë§ì€í¸
     amb_coff = 0.4;
     dif_coff = 0.8;
     glPushMatrix();
@@ -378,7 +378,7 @@ void bookShelf() {
     glPopMatrix();
 
 
-    //¹Ù´Ú
+    //ë°”ë‹¥
     amb_coff = 0.4;
     dif_coff = 0.8;
     glPushMatrix();
@@ -407,16 +407,16 @@ void bed() {
     width[2] = width[0], column[2] = column[1], height[2] = height[1] / 3;
     width[3] = width[0], column[3] = column[1], height[3] = height[1] / 3;
     width[4] = width[0], column[4] = column[1], height[4] = height[1] / 3;
-    width[5] = 0.02, column[5] = column[2] + column[3] + column[4], height[5] = height[0] * 2;// width  hard ÄÚµù
-    width[6] = width[0] - width[5], column[6] = column[2] + column[3] + column[4], height[6] = height[1] / 3 * 1.5;  //¸ŞÆ®¸®½º
+    width[5] = 0.02, column[5] = column[2] + column[3] + column[4], height[5] = height[0] * 2;// width  hard ì½”ë”©
+    width[6] = width[0] - width[5], column[6] = column[2] + column[3] + column[4], height[6] = height[1] / 3 * 1.5;  //ë©”íŠ¸ë¦¬ìŠ¤
     width[7] = width[6], column[7] = column[0] / 7, height[7] = height[6] / 3 * 1.5;
 
-    tmpWidth = width[6] / 2; // ¸ÅÆ®¸®½ºÀÇ Àı¹İ
+    tmpWidth = width[6] / 2; // ë§¤íŠ¸ë¦¬ìŠ¤ì˜ ì ˆë°˜
     tmpColumn = column[6];
     tmpHeight = height[0];
 
 
-    //Ä§´ëÀÇ °ËÀº ºÎºĞ 0
+    //ì¹¨ëŒ€ì˜ ê²€ì€ ë¶€ë¶„ 0
     amb_coff = 0.1;
     dif_coff = 0.1;
     glPushMatrix();
@@ -428,7 +428,7 @@ void bed() {
     glPopMatrix();
 
 
-    //Ä§´ëÀÇ º£ÀÌÁö ºÎºĞ ¸Ç ¾Æ·¡   1
+    //ì¹¨ëŒ€ì˜ ë² ì´ì§€ ë¶€ë¶„ ë§¨ ì•„ë˜   1
     amb_coff = 0.35;
     dif_coff = 0.8;
     glPushMatrix();
@@ -438,7 +438,7 @@ void bed() {
     drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
-    //Ä§´ëÀÇ º£ÀÌÁö ºÎºĞ ¸Ç ¾Æ·¡ ¹Ù·Î À§  2
+    //ì¹¨ëŒ€ì˜ ë² ì´ì§€ ë¶€ë¶„ ë§¨ ì•„ë˜ ë°”ë¡œ ìœ„  2
     amb_coff = 0.35;
     dif_coff = 0.8;
     glPushMatrix();
@@ -449,7 +449,7 @@ void bed() {
     drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
-    //2 ÀÇ ¹Ù·Î ¿·    3
+    //2 ì˜ ë°”ë¡œ ì˜†    3
     amb_coff = 0.35;
     dif_coff = 0.8;
     glPushMatrix();
@@ -460,7 +460,7 @@ void bed() {
     drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
-    //3ÀÇ ¹Ù·Î ¿·      4
+    //3ì˜ ë°”ë¡œ ì˜†      4
     amb_coff = 0.35;
     dif_coff = 0.8;
     glPushMatrix();
@@ -471,7 +471,7 @@ void bed() {
     drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
-    //º£ÀÌÁö»öÀÇ º®¿¡ ±â´ë¾î ÀÖ´Â ºÎºĞ ../5
+    //ë² ì´ì§€ìƒ‰ì˜ ë²½ì— ê¸°ëŒ€ì–´ ìˆëŠ” ë¶€ë¶„ ../5
     amb_coff = 0.35;
     dif_coff = 0.8;
     glPushMatrix();
@@ -482,7 +482,7 @@ void bed() {
     drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 13);
     glPopMatrix();
 
-    //È¸»ö ¸ÅÆ®¸®½º  .. /6
+    //íšŒìƒ‰ ë§¤íŠ¸ë¦¬ìŠ¤  .. /6
     amb_coff = 0.2;
     dif_coff = 0.8;
     glPushMatrix();
@@ -494,7 +494,7 @@ void bed() {
     glPopMatrix();
 
 
-    //¹è°³  .. /7
+    //ë°°ê°œ  .. /7
     amb_coff = 0.2;
     dif_coff = 0.8;
     glPushMatrix();
@@ -510,14 +510,14 @@ void desk() {
     GLfloat color[3] = { 0 };
     double gap_right_wall = 0.01;
 
-    ///////// scaleÀ» À§ÇÑ ±æÀÌ
+    ///////// scaleì„ ìœ„í•œ ê¸¸ì´
     double width_for_desk[10] = {}, column_for_desk[10] = {}, height_for_desk[10] = {}, amb_coff, dif_coff;
     column_for_desk[0] = roomX - tmpColumn - gap_right_wall, height_for_desk[0] = 0.015, width_for_desk[0] = tmpWidth * 2;
     column_for_desk[1] = column_for_desk[0] / 20, height_for_desk[1] = tmpHeight, width_for_desk[1] = width_for_desk[0];
     column_for_desk[2] = column_for_desk[0] / 5, height_for_desk[2] = tmpHeight * 2, width_for_desk[2] = width_for_desk[0];
 
 
-    ////////// translateÀ» À§ÇÑ ÁÂÇ¥
+    ////////// translateì„ ìœ„í•œ ì¢Œí‘œ
     double x_for_desk[10] = {}, y_for_desk[10] = {}, z_for_desk[10] = {};
     x_for_desk[0] = tmpColumn, y_for_desk[0] = tmpHeight * 2, z_for_desk[0] = 0;
     x_for_desk[1] = tmpColumn, y_for_desk[1] = tmpHeight, z_for_desk[1] = 0;
@@ -534,7 +534,7 @@ void desk() {
     drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 6, 14);
     glPopMatrix();
 
-    //¿ŞÂÊ ´Ù¸®
+    //ì™¼ìª½ ë‹¤ë¦¬
     amb_coff = 0.2;
     dif_coff = 0.8;
     glPushMatrix();
@@ -545,7 +545,7 @@ void desk() {
     drawCube1_front_texture(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 6, 14);
     glPopMatrix();
 
-    //¿À¸¥ÂÊ ´Ù¸®
+    //ì˜¤ë¥¸ìª½ ë‹¤ë¦¬
     amb_coff = 0.2;
     dif_coff = 0.9;
     glPushMatrix();
@@ -570,7 +570,7 @@ void monitor() {
     amb_coff = 0.2;
     dif_coff = 0.7;
 
-    //Å°º¸µå ±×¸®±â
+    //í‚¤ë³´ë“œ ê·¸ë¦¬ê¸°
     glPushMatrix();
     setColorRGB(color, 168, 167, 162);
     glColor3f(color[0], color[1], color[2]);
@@ -581,7 +581,7 @@ void monitor() {
     drawCube1(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 50, 8);
     glPopMatrix();
 
-    //¸ğ´ÏÅÍ ±×¸®±â
+    //ëª¨ë‹ˆí„° ê·¸ë¦¬ê¸°
     amb_coff = 0.3;
     dif_coff = 0.7;
     glPushMatrix();
@@ -597,7 +597,7 @@ void monitor() {
     glPopMatrix();
 
 
-    //¿ø±âµÕ
+    //ì›ê¸°ë‘¥
     glPushMatrix();
     setColorRGB(color, 245, 237, 230);
     glColor3f(color[0], color[1], color[2]);
@@ -725,7 +725,7 @@ void rug() {
     amb_coff = 0.3;
     dif_coff = 1.0;
 
-    //¿ø±âµÕ
+    //ì›ê¸°ë‘¥
     glPushMatrix();
     setColorRGB(color, 245, 237, 230);
     glColor3f(color[0], color[1], color[2]);
@@ -734,7 +734,7 @@ void rug() {
     gluCylinder(quadratic, r, r, pilir_height, 32, 32);
     glPopMatrix();
 
-    //À§¿¡
+    //ìœ„ì—
     glPushMatrix();
     setColorRGB(color, 255, 255, 255);
     glColor3f(color[0], color[1], color[2]);
@@ -747,7 +747,7 @@ void rug() {
     glBindTexture(GL_TEXTURE_2D, -1);
 
 
-    //À§¿¡, ÀÌ°Å ¿Ö ÀÖÁö??
+    //ìœ„ì—, ì´ê±° ì™œ ìˆì§€??
     /*glPushMatrix();
     setColorRGB(color, 245, 237, 230);
     glColor3f(color[0], color[1], color[2]);
@@ -836,7 +836,7 @@ void car(void)
     glScalef(0.4, 1, 1);
     drawCube1_front_other_texture(color[0] * dif_coff, color[1] * dif_coff, color[2] * dif_coff, color[0] * amb_coff, color[1] * amb_coff, color[2] * amb_coff, 5, 22, 21);
 
-    //Â÷ Ã¢¹®
+    //ì°¨ ì°½ë¬¸
     glPushMatrix();
     glTranslatef(0.01, 0.9, -.001);
     glScalef(0.5, 1.1, 1);
@@ -899,7 +899,7 @@ void lamp() {
     dif_coff = 0.9;
 
 
-    //¿ø±âµÕ
+    //ì›ê¸°ë‘¥
     glPushMatrix();
     setColorRGB(color, 245, 237, 230);
     glColor3f(color[0], color[1], color[2]);
@@ -963,41 +963,41 @@ void lamp() {
 }
 
 void rotateCamera() {
-    // Ä«¸Ş¶óÀÇ ¹æÇâ º¤ÅÍ¸¦ °è»ê
+    // ì¹´ë©”ë¼ì˜ ë°©í–¥ ë²¡í„°ë¥¼ ê³„ì‚°
     GLfloat cameraDirectionX = sin(cameraAngle);
     GLfloat cameraDirectionY = 0.0f;
     GLfloat cameraDirectionZ = cos(cameraAngle);
 
-    // gluLookAt ÇÔ¼ö¸¦ »ç¿ëÇÏ¿© Ä«¸Ş¶ó¸¦ ¼³Á¤
-    gluLookAt(cameraX, cameraY, cameraZ,  // Ä«¸Ş¶ó À§Ä¡
-        cameraX + cameraDirectionX, cameraY + cameraDirectionY, cameraZ + cameraDirectionZ,  // ¸ñÇ¥ ÁöÁ¡
-        0.0f, 1.0f, 0.0f);  // »ó´Ü ¹æÇâ
+    // gluLookAt í•¨ìˆ˜ë¥¼ ì‚¬ìš©í•˜ì—¬ ì¹´ë©”ë¼ë¥¼ ì„¤ì •
+    gluLookAt(cameraX, cameraY, cameraZ,  // ì¹´ë©”ë¼ ìœ„ì¹˜
+        cameraX + cameraDirectionX, cameraY + cameraDirectionY, cameraZ + cameraDirectionZ,  // ëª©í‘œ ì§€ì 
+        0.0f, 1.0f, 0.0f);  // ìƒë‹¨ ë°©í–¥
 }
 
-// µğ½ºÇÃ·¹ÀÌ Äİ¹é ÇÔ¼ö
+// ë””ìŠ¤í”Œë ˆì´ ì½œë°± í•¨ìˆ˜
 void rtdisplay() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
-    // Ä«¸Ş¶ó È¸Àü
+    // ì¹´ë©”ë¼ íšŒì „
     rotateCamera();
 
-    // ¿©±â¼­ ¹°Ã¼¸¦ ±×¸®°Å³ª ´Ù¸¥ ·»´õ¸µ ÀÛ¾÷À» ¼öÇàÇÕ´Ï´Ù.
+    // ì—¬ê¸°ì„œ ë¬¼ì²´ë¥¼ ê·¸ë¦¬ê±°ë‚˜ ë‹¤ë¥¸ ë Œë”ë§ ì‘ì—…ì„ ìˆ˜í–‰í•©ë‹ˆë‹¤.
 
     glFlush();
     glutSwapBuffers();
 }
 
-// ½Ã°£ Äİ¹é ÇÔ¼ö
+// ì‹œê°„ ì½œë°± í•¨ìˆ˜
 void timer(int value) {
-    // Ä«¸Ş¶ó °¢µµ¸¦ ¾÷µ¥ÀÌÆ®
+    // ì¹´ë©”ë¼ ê°ë„ë¥¼ ì—…ë°ì´íŠ¸
     cameraAngle += 0.01f;
 
-    // µğ½ºÇÃ·¹ÀÌ ÇÔ¼ö¸¦ È£ÃâÇÏ¿© È­¸éÀ» ´Ù½Ã ±×¸³´Ï´Ù.
+    // ë””ìŠ¤í”Œë ˆì´ í•¨ìˆ˜ë¥¼ í˜¸ì¶œí•˜ì—¬ í™”ë©´ì„ ë‹¤ì‹œ ê·¸ë¦½ë‹ˆë‹¤.
     glutPostRedisplay();
-    glutTimerFunc(16, timer, 0);  // 60ÇÁ·¹ÀÓÀ¸·Î ¼³Á¤
+    glutTimerFunc(16, timer, 0);  // 60í”„ë ˆì„ìœ¼ë¡œ ì„¤ì •
 }
 
 void chair() {
@@ -1295,11 +1295,11 @@ void init(void)
     glEnable(GL_DEPTH_TEST);
 
     glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-    glGenTextures(30, texture); //texture size ¸¸Å­
+    glGenTextures(30, texture); //texture size ë§Œí¼
 
    
     unsigned char* img = stbi_load("images/marble_tile.jpg", &width, &height, &nrChannels, 0);
-    glBindTexture(GL_TEXTURE_2D, texture[0]); // ¹æ¹Ù´Ú
+    glBindTexture(GL_TEXTURE_2D, texture[0]); // ë°©ë°”ë‹¥
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
@@ -1314,7 +1314,7 @@ void init(void)
 
     //rug
     img = stbi_load("images/rug.jpg", &width, &height, &nrChannels, 0);
-    glGenTextures(1, &rugTexture); //texture size ¸¸Å­
+    glGenTextures(1, &rugTexture); //texture size ë§Œí¼
 
     glBindTexture(GL_TEXTURE_2D, rugTexture);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
@@ -1366,7 +1366,7 @@ void init(void)
 
     texture[1] = texture[4] = texture[3];
 
-    //Ä§´ë °ËÀº ºÎºĞ ¿ø¸ñ
+    //ì¹¨ëŒ€ ê²€ì€ ë¶€ë¶„ ì›ëª©
     img = stbi_load("images/tree_dark.jpg", &width, &height, &nrChannels, 0);
     glBindTexture(GL_TEXTURE_2D, texture[6]);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
@@ -1391,7 +1391,7 @@ void init(void)
     glEnable(GL_TEXTURE_2D);
     stbi_image_free(img);
 
-    //Å°º¸µå
+    //í‚¤ë³´ë“œ
     img = stbi_load("images/keyBoard.jpg", &width, &height, &nrChannels, 0);
     glBindTexture(GL_TEXTURE_2D, texture[8]);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
@@ -1404,7 +1404,7 @@ void init(void)
     glEnable(GL_TEXTURE_2D);
     stbi_image_free(img);
 
-    //¸ğ´ÏÅÍ
+    //ëª¨ë‹ˆí„°
     img = stbi_load("images/monitor.jpg", &width, &height, &nrChannels, 0);
     glBindTexture(GL_TEXTURE_2D, texture[9]);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
@@ -1432,7 +1432,7 @@ void init(void)
     glEnable(GL_TEXTURE_2D);
     stbi_image_free(img);
 
-    //¾Æ¸¶Á¸
+    //ì•„ë§ˆì¡´
     stbi_set_flip_vertically_on_load(true);
     img = stbi_load("images/amazon.jpg", &width, &height, &nrChannels, 0);
 
@@ -1615,52 +1615,11 @@ int main(int argc, char** argv)
 {
     glutInit(&argc, argv);
 
-    std::cout << "To move Eye point:" << std::endl;
-    std::cout << "w: up" << std::endl;
-    std::cout << "s: down" << std::endl;
-    std::cout << "a: left" << std::endl;
-    std::cout << "d: right" << std::endl;
-    std::cout << "i: zoom in" << std::endl;
-    std::cout << "o: zoom out" << std::endl;
-    std::cout << "      " << std::endl;
-    std::cout << "To move Camera point:" << std::endl;
-    std::cout << "j: up" << std::endl;
-    std::cout << "n: down" << std::endl;
-    std::cout << "b: left" << std::endl;
-    std::cout << "m: right" << std::endl;
-    std::cout << "l: move nearer" << std::endl;
-    std::cout << "k: move far" << std::endl;
-    std::cout << "      " << std::endl;
-    std::cout << "Press q to move to default position" << std::endl;
-    std::cout << "      " << std::endl;
-    std::cout << "For lighting:      " << std::endl;
-    std::cout << "Light source 1 [the light on the right on the screen      " << std::endl;
-    std::cout << "1: to turn on/off light one     " << std::endl;
-    std::cout << "4: to turn on/off ambient light one     " << std::endl;
-    std::cout << "5: to turn on/off diffusion light one     " << std::endl;
-    std::cout << "6: to turn on/off specular light one      " << std::endl;
-    std::cout << "      " << std::endl;
-    std::cout << "Light source 2 [the light on the left on the screen " << std::endl;
-    std::cout << "2: to turn on/off light two     " << std::endl;
-    std::cout << "7: to turn on/off ambient light two     " << std::endl;
-    std::cout << "8: to turn on/off diffusion light two     " << std::endl;
-    std::cout << "9: to turn on/off specular light two      " << std::endl;
-    std::cout << "      " << std::endl;
-    std::cout << "Lamp light (spot light)" << std::endl;
-    std::cout << "3: to turn on/off lamp     " << std::endl;
-    std::cout << "e: to turn on/off ambient lamp light    " << std::endl;
-    std::cout << "r: to turn on/off diffusion lamp light      " << std::endl;
-    std::cout << "t: to turn on/off specular lamp light      " << std::endl;
-    std::cout << "      " << std::endl;
-    std::cout << "____________________" << std::endl;
-    std::cout << "      " << std::endl;
-    std::cout << "      " << std::endl;
-
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     
     glutInitWindowPosition(100, 100);
     glutInitWindowSize(windowHeight, windowWidth);
-    glutCreateWindow("19011460 ÀÌÀ¯Àç");
+    glutCreateWindow("sejong univ #lujae#");
 
     glShadeModel(GL_SMOOTH);
     glEnable(GL_DEPTH_TEST);
